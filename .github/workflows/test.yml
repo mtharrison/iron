@@ -1,0 +1,23 @@
+name: Test
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  test:
+    name: Test Code
+    runs-on: ubuntu-latest
+    steps:
+    # Checkout the repo
+    - uses: actions/checkout@v2
+    # Setup node binary and add to PATH
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12'
+    # Install dependencies
+    - run: npm install
+    # Test code
+    - run: npm test
